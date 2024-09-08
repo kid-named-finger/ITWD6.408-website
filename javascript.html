@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML/RSS</title>
+
+    <!--Insert Bootstrap CSS here-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+        rel="stylesheet" 
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Insert JQuery library -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    
+    <!-- CSS -->
+    <style>
+        :root{
+            --navbar-color:     #daf7a6;
+        }
+
+        /* Slideshow CSS */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        .mySlides{
+           display: none; 
+        }
+        img {
+            vertical-align: middle;
+        }
+
+        /* Slideshow container */
+        .slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+        }
+        /* Caption text */
+        .text {
+            color: black;
+            font-size: 12px;
+            padding: 8px 12px;
+            top: 0;
+        }
+        .dot {
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+        .active-slide {
+            background-color: #717171;
+        }
+        .fade {
+            animation-name: fade;
+            animation-duration: 5s;
+        }
+        @keyframes fade {
+            from {opacity: .4;}
+            to {opacity: 1;}
+        }
+        /* Decrease text size on smaller screens */
+        @media only screen and (max-width: 300px) {
+            .text {font-size: 11px;}
+        }
+
+        /* Quiz CSS */
+        .question {
+            font-weight: 600;
+        }
+        .answers {
+            margin-bottom: 20px;
+        }
+        .answers label {
+            display: block;
+        }
+        #submit {
+            font-family: sans-serif;
+            font-size: 20px;
+            color: black;
+            border: 0px;
+            border-radius: 3px;
+            padding: 20px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        #submit:hover {
+            background-color: #38a;
+        }
+        .image-style {
+            display: block; 
+            height: 150px; 
+            margin-left: auto; 
+            margin-right: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Search Button -->
+    <div class="collapse" id="collapseSearchBox">
+        <form>
+            <input type="text" id="searchInput">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+
+    <!-- Navigation bar-->
+    <nav class="navbar navbar-expand-lg" style="height: 10vh; background-color: var(--navbar-color);">
+        <div class="container-fluid">
+
+            <!--Tagline - Insert a globe icon in front of the tagline -->  
+            <a class="navbar-brand" href="index.html"><span class="fs-2 bi bi-globe"></span>ITWD6.408</a>
+
+            <!-- Insert search icon button -->
+            <!-- Only show on small devices, hidden on big screen -->
+            <button class="btn d-inline d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSearchBox">
+                <span class="fs-3 bi-search-heart"></span>
+            </button>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" 
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                
+            </button>
+
+            <!-- Collapse navbar -->
+            <div class="collapse navbar-collapse d-lg-flex justify-content-center" id="navbarNavAltMarkup">
+              <div class="navbar-nav w-50 float-end" style="background-color: var(--navbar-color);">
+                <a class="nav-link active text-end" aria-current="page" href="index.html">Home</a>
+                <a class="nav-link text-end" href="forms.html">Forms</a>
+                <a class="nav-link text-end" href="xml.html">XML/RSS</a>
+                <a class="nav-link text-end" href="javascript.html">Javascript</a>
+                <a class="nav-link text-end" href="research.html">Research</a>
+              </div>
+            </div>
+        </div>
+
+        <!-- Search button that only shows on big devices -->
+        <button class="btn d-none d-lg-inline" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSearchBox">
+            <span class="fs-3 bi-search-heart"></span>
+        </button>
+      </nav>
+
+    <!--Main area-->
+    <main class="row bg bg-success" style="min-height: 80vh;">
+        <div class="col-12 col-md-3">
+            <div class="row p-0 m-0">
+                <button class="col-12 col-md-12 btn btn-primary" type="button" data-bs-toggle="collapse" 
+                data-bs-target="#moviesform" aria-expanded="false" aria-controls="collapseExample"
+                style="margin-left: 1vh; margin-top: 1vh;">
+                    Movies
+                </button>
+                <button class="col-12 col-md-12 btn btn-primary" type="button" data-bs-toggle="collapse" 
+                data-bs-target="#quizform" aria-expanded="false" aria-controls="collapseExample"
+                style="margin-left: 1vh; margin-top: 1vh;">
+                    Quiz
+                </button>
+                <button class="col-12 col-md-12 btn btn-primary" type="button" data-bs-toggle="collapse" 
+                data-bs-target="#authenticationForm" aria-expanded="false" aria-controls="collapseExample"
+                style="margin-left: 1vh; margin-top: 1vh;">
+                    Authentication
+                </button>
+                <button class="col-12 col-md-12 btn btn-primary" type="button" data-bs-toggle="collapse" 
+                data-bs-target="#cartform" aria-expanded="false" aria-controls="collapseExample"
+                style="margin-left: 1vh; margin-top: 1vh;">
+                    Shopping cart
+                </button>
+            </div>
+        </div>
+
+        <!-- Forms -->
+        <div class="col-12 col-md-9">
+            <div>
+                <div class="collapse show" id="moviesform">
+                    <div class="card card-body bg-warning" style="min-height: 70vh; margin-top: 1vh;">
+                        <form class="row g-3" style="color: black;">
+                            <h2>Automatic slideshow</h2>
+                            <p>Changes the slide every 2 seconds</p>
+
+                            <div class="slideshow-container d-flex justify-content-center">
+                                <!-- Slide One -->
+                                <div class="mySlides fade">
+                                    <div class="numberText">
+                                        1 / 3
+                                    </div>
+                                    <img src="Images/swMoviePoster.png" style="max-height: 500px;">
+                                    <div class="text">
+                                        Star Wars
+                                    </div>
+                                </div>
+                                <!-- Slide Two -->
+                                <div class="mySlides fade">
+                                    <div class="numberText">
+                                        2 / 3 
+                                    </div>
+                                    <img src="Images/swEmpirePost.png"  style="max-height: 500px;">
+                                    <div class="text">
+                                        The Empire Strikes Back
+                                    </div>
+                                </div>
+                                <!-- Slide 3 -->
+                                <div class="mySlides fade">
+                                    
+                                    <div class="numberText">
+                                        3 / 3
+                                    </div>
+                                    <img src="Images/swJediPoster.png"  style="max-height: 500px;">
+                                    <div class="text">
+                                        Return of the Jedi
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <!-- Dots underneath slideshow-->
+                            <div style="text-align: center;">
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                            <script>
+                                let slideIndex = 0;
+                                showSlides();
+
+                                function showSlides() {
+                                    let i;
+                                    let slides = document.getElementsByClassName("mySlides");
+                                    let dots = document.getElementsByClassName("dot");
+                                    for (i = 0; i < slides.length; i++) {
+                                        slides[i].style.display = "none";
+                                    }
+                                    slideIndex++;
+
+                                    if (slideIndex > slides.length) {slideIndex = 1}
+                                    for (i = 0; i < dots.length; i++) {
+                                        dots[i].className = dots[i].className.replace(" active-slide", "");
+                                    }
+                                    slides[slideIndex - 1].style.display = "block";
+                                    dots[slideIndex - 1].className += " active-slide";
+                                    setTimeout(showSlides, 3000); // Change image every 2 seconds
+                                }
+                            </script>
+                        </form>
+                    </div>
+                </div>
+                <div class="multi-collapse collapse" id="quizform">
+                    <div class="card card-body bg bg-warning" style="min-height: 70vh; margin-top: 1vh;">
+                       	<h1>Quiz</h1>
+                        <div id="quiz"></div>
+                        <button id="submit">Submit Quiz</button>
+                        <div id="results"></div>
+                        <script>
+                            (function(){
+                                function buildQuiz(){
+                                    // variable to store the HTML output
+                                    const output = [];
+
+                                    // for each question...
+                                    myQuestions.forEach(
+                                    (currentQuestion, questionNumber) => {
+
+                                        // variable to store the list of possible answers
+                                        const answers = [];
+
+                                        // and for each available answer...
+                                        for(letter in currentQuestion.answers){
+
+                                        // ...add an HTML radio button
+                                        answers.push(
+                                            `<label>
+                                            <input type="radio" name="question${questionNumber}" value="${letter}">
+                                            ${letter} :
+                                            ${currentQuestion.answers[letter]}
+                                            </label>`
+                                        );
+                                        }
+
+                                        // add this question and its answers to the output
+                                        output.push(
+                                        `<div class="question"> ${currentQuestion.question} </div>
+                                        <div class="answers"> ${answers.join('')} </div>`
+                                        );
+                                    }
+                                    );
+
+                                    // finally combine our output list into one string of HTML and put it on the page
+                                    quizContainer.innerHTML = output.join('');
+                                }
+                                function showResults(){
+
+                                    // gather answer containers from our quiz
+                                    const answerContainers = quizContainer.querySelectorAll('.answers');
+
+                                    // keep track of user's answers
+                                    let numCorrect = 0;
+
+                                    // for each question...
+                                    myQuestions.forEach( (currentQuestion, questionNumber) => {
+
+                                    // find selected answer
+                                    const answerContainer = answerContainers[questionNumber];
+                                    const selector = `input[name=question${questionNumber}]:checked`;
+                                    const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+                                    // if answer is correct
+                                    if(userAnswer === currentQuestion.correctAnswer){
+                                        // add to the number of correct answers
+                                        numCorrect++;
+
+                                        // color the answers green
+                                        answerContainers[questionNumber].style.color = 'lightgreen';
+                                    }
+                                    // if answer is wrong or blank
+                                    else{
+                                        // color the answers red
+                                        answerContainers[questionNumber].style.color = 'red';
+                                    }
+                                    });
+
+                                    // show number of correct answers out of total
+                                    resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+                                }     
+
+                        const quizContainer = document.getElementById('quiz');
+                        const resultsContainer = document.getElementById('results');
+                        const submitButton = document.getElementById('submit');
+                        const myQuestions = [
+                            {
+                            question: "Who invented JavaScript?",
+                            answers: {
+                                a: "Douglas Crockford",
+                                b: "Sheryl Sandberg",
+                                c: "Brendan Eich"
+                            },
+                            correctAnswer: "c"
+                            },
+                            {
+                            question: "Which one of these is a JavaScript package manager?",
+                            answers: {
+                                a: "Node.js",
+                                b: "TypeScript",
+                                c: "npm"
+                            },
+                            correctAnswer: "c"
+                            },
+                            {
+                            question: "Which tool can you use to ensure code quality?",
+                            answers: {
+                                a: "Angular",
+                                b: "jQuery",
+                                c: "RequireJS",
+                                d: "ESLint"
+                            },
+                            correctAnswer: "d"
+                            }
+                        ];
+
+                        // Kick things off
+                        buildQuiz();
+
+                        // Event listeners
+                        submitButton.addEventListener('click', showResults);
+                        })();
+                        </script>
+                    </div>
+                </div>
+                <div class="multi-collapse collapse" id="authenticationForm">
+                    <div class="card card-body bg bg-warning" style="min-height: 70vh; margin-top: 1vh;">
+                        <div class="container">
+                            <h1>Authentication</h1>	
+                            <div class="row">
+                                    <section class="col-12 col-md-12">				
+                                        <h5>Sign Up</h5>
+                                        <div class="row">
+                                            <label class="col-3">Username: </label>
+                                            <input class="col-8" type="text" id="signup_username" placeholder="username">	
+                                        </div>
+                                        <div class="row">	
+                                            <label class="col-3">Email: </label>
+                                            <input class="col-8" type="email" id="signup_email" placeholder="email">	
+                                        </div>	
+                                        <div class="row">					
+                                            <label class="col-3">Password: </label>
+                                            <input class="col-8" type="password" id="signup_password" placeholder="password">
+                                        </div>				
+                                        <input type="button" value="Sign up" class="btn btn-primary" onclick="createUser()">	
+                                    </section>
+                        
+                                    <section class="col-12 col-md-12">
+                                    <h5>Sign In</h5>	
+                                    <div class="row">
+                                        <label class="col-3">Email: </label>
+                                        <input class="col-8" type="text" id="login_email" placeholder="email">	
+                                    </div>	
+                                    <div class="row">				
+                                        <label class="col-3">Password: </label>
+                                        <input class="col-8" type="password" id="login_password" placeholder="password">
+                                    </div>				
+                                    <input type="button" value="Login" class="btn btn-primary" onclick="checkUser()">			
+                                </section>		
+                            </div>	
+                            <script>
+                                let users = [
+                                    {username: "Daniel", email: "daniel@eit.ac.nz", password: "daniel1234"},
+                                    {username: "John", email: "john@eit.ac.nz", password: "john1234"},
+                                    {username: "Ian", email: "ian@eit.ac.nz", password: "ian1234"},
+                                    {username: "Ish", email: "ish@eit.ac.nz", password: "ish1234"},
+                                    {username: "Noor", email: "noor@eit.ac.nz", password: "noor1234"},
+                                    ];	
+
+                                class User {
+                                    //Properties (props) & Constructor
+                                    constructor(username, email, password) {
+                                        this.username = username; //"this" = this object property
+                                        this.email = email;       //"this" = this object property
+                                        this.password = password; //"this" = this object property
+                                    }
+
+                                    //Methods:
+                                    signUp(userList) {
+                                        //Check if the email exists
+                                        let foundObject = null;
+                                        for (let i=0; i < userList.length; i++) {
+                                            if (this.email == userList[i].email) {
+                                                foundObject = userList[i];//Return the matching user				
+                                            } 
+                                        }
+                                        //
+                                        if (foundObject != null) {
+                                            alert("This email already exists");	
+                                        } else {
+                                            alert("Account created");				
+                                            userList.push(this);
+                                        }
+                                    }
+
+                                    signIn(userList) {
+                                        //Check if the user exists
+                                        let foundUser = null;
+                                        for (let i=0; i < userList.length; i++) {
+                                            if (this.email == userList[i].email && this.password == userList[i].password) {
+                                                foundUser = userList[i];//Return the matching user	
+                                                alert("Hello " + foundUser.username + ", you have logged in");	
+                                                return foundUser; 
+                                            } 
+                                        }
+                                        return null;
+                                    }
+                                }
+
+                                function createUser() {
+                                    //Get entered data
+                                    let enteredUsername = document.getElementById("signup_username").value;
+                                    let enteredEmail = document.getElementById("signup_email").value;
+                                    let enteredPass = document.getElementById("signup_password").value;
+                                    
+                                    //Create a new user
+                                    let enteredUser = new User(enteredUsername, enteredEmail, enteredPass);
+                                    //Call to execute the signUp() method
+                                    enteredUser.signUp(users);
+                                }
+
+                                function checkUser() {
+                                    //Get entered data
+                                    let enteredEmail = document.getElementById("login_email").value;
+                                    let enteredPass = document.getElementById("login_password").value;
+                                    
+                                    //Create a new user
+                                    let enteredUser = new User("loginUser", enteredEmail, enteredPass);
+                                    //Call to execute the signIn() method
+                                    enteredUser.signIn(users);
+                                }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <div class="multi-collapse collapse" id="cartform">
+                    <div class="card card-body bg bg-warning" style="min-height: 70vh; margin-top: 1vh;">
+                        <h1>Shopping Cart</h1>
+                        <div class="container">
+                            <label>Keyword:</label>
+                            <input type="text" id="searchInput">
+                            <input type="button" value="search" onclick="displayFilteredMovies()">	
+                            <br>
+                        </div>
+                        
+                        <div class="container">
+                            <div class="row" id="movie-list"></div>
+                        </div>
+                        
+                        <div class="container">
+                            <h5>Shopping Cart:</h5>
+                            <div class="p-2 m-2" id="shopping-cart"></div>
+                        </div>
+                        <script>
+                            let topMovies = [
+                                {id: 0, title: "Star Wars", year: 1977, image_url: "Images/swMoviePoster.png"},
+                                {id: 1, title: "The Empire Strikes", year: 1980, image_url: "Images/swEmpirePost.png"},
+                                {id: 2, title: "Return Of The Jedi", year: 1983, image_url: "Images/swJediPoster.png"},
+                                {id: 3, title: "Phantom Menace", year: 1999, image_url: "Images/phantommenace.png"},
+                                {id: 4, title: "Attack of the Clones", year: 2002, image_url: "Images/attackclones.png"},
+                                {id: 5, title: "Revenge of the Sith", year: 2005, image_url: "Images/revengeofsith.png"},
+                                ];
+
+                            class Movie {
+                                //Properties 
+                                constructor(id, title, year, image_url) {
+                                this.id = id;
+                                this.title = title;
+                                this.year = year;
+                                this.image_url = image_url;
+                                }
+
+                                //Methods: render the HTML content of the movie to webpage UI
+                                render() {
+                                    let content = `
+                                                    <div class="col-12 col-md-4 p-2">
+                                                        <div class="border border-tertiary bg-secondary h-100">
+                                                            <h4 class="text-center">${this.title}</h4>
+                                                            <p class="text-center">${this.year}</p>
+                                                            <img src=${this.image_url} class="image-style">	
+                                                            <div class="text-center">
+                                                                <button class="btn btn-warning" onclick="addToCartUpdate(${this.id})">ADD TO CART</button>
+                                                            </div>								
+                                                        </div>							
+                                                </div>
+                                                `;     
+                                    //Return the content
+                                    return content;
+                                }
+                            }
+
+                            //Create a movie object & Display it on webpage UI
+                            let aMovie = new Movie(topMovies[0].id, topMovies[0].title, topMovies[0].year, topMovies[0].image_url);
+                            //console.log(document.getElementById("movie-list"));
+                            document.getElementById("movie-list").innerHTML = aMovie.render();
+
+                            //Create a list of movie objects & display on webpage UI
+                            let movieObjects = [];
+                            let listOfMovieObjectsContent = "";
+                            for (let i = 0; i < topMovies.length ; i++) {
+                                let movie = new Movie(topMovies[i].id, topMovies[i].title, topMovies[i].year, topMovies[i].image_url);
+                                movieObjects.push(movie);//Append the movie to the list of movie objects
+                                listOfMovieObjectsContent += movie.render();//build up the html render
+                            }
+                            //Display a list of movie objects on webpage UI
+                            document.getElementById("movie-list").innerHTML = listOfMovieObjectsContent;
+
+                            //Filter feature: https://www.w3schools.com/jsref/jsref_filter.asp
+                            function displayFilteredMovies() {
+                                //Get keyword entered by user
+                                let keyword = document.getElementById("searchInput").value.toLowerCase();
+                                //Call to execute the filter method.
+                                let filteredObjects = movieObjects.filter(containKeyword);
+                                //Display the filtered movies
+                                let listOfFilteredMovieContent = "";
+                                for (let i = 0; i < filteredObjects.length ; i++) {
+                                    listOfFilteredMovieContent += filteredObjects[i].render();//build up the html render
+                                }	
+                                //Display a list of movie objects on UI
+                                document.getElementById("movie-list").innerHTML = listOfFilteredMovieContent;	
+                                
+                                //Filter function 
+                                function containKeyword(movie) {
+                                if (movie.title.toLowerCase().includes(keyword)) {
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                                }	
+                            }
+
+                            //Add to Shopping cart
+                            function addToCart(id) {
+                                //Create a new HTML node/element <p> to display this newly added item
+                                let node = document.createElement("p");
+                                //Set styles to new node
+                                //node.className = 'class-name';
+                                node.style.color = 'red';
+                                node.style.backgroundColor = 'yellow';
+                                //Set content for new node
+                                let nodeCcntent = document.createTextNode(movieObjects[id].title + ": " + movieObjects[id].year);
+                                //Append the content (nodeCcntent) to the new node	
+                                node.appendChild(nodeCcntent);	
+                                //Append the above child HTML node to the parent node "shopping-cart"
+                                document.getElementById("shopping-cart").appendChild(node);
+                            }
+
+                            //Update "Add to Shopping cart" with "Remove" button
+                            let itemNumber = 0;
+                            function addToCartUpdate(id) {
+                                //
+                                itemNumber++;//Use to create unique id for item added to the shopping cart
+                                //
+                                let currentShoppingCart = document.getElementById("shopping-cart").innerHTML;
+                                let newAddedMovie = `<div id="${itemNumber}">
+                                                        <label>${movieObjects[id].title} : ${movieObjects[id].year}</label>
+                                                        <input type="button" value="REMOVE" onclick="removeItem(${itemNumber})">	
+                                                    </div>
+                                                    `;
+                                //Update shopping-cart
+                                document.getElementById("shopping-cart").innerHTML = currentShoppingCart + newAddedMovie;
+                            }
+                            //RemoveItem function 
+                            function removeItem(itemID) {
+                            document.getElementById(itemID).remove();
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer style="min-height: 10vh; background-color: var(--navbar-color);">     
+       <div class="row">
+            <!-- Insert social media icons -->
+            <div class="col-12 col-md-4"> 
+                <a href="https://www.facebook.com/" style="color: blue;"><span class="fs-1 bi bi-facebook"></span></a>
+                <a href="https://www.linkedin.com/"><span class="fs-1 bi bi-linkedin"></span></a>
+                <a href="https://www.instagram.com/" style="color: greenyellow;"><span class="fs-1 bi bi-instagram"></span></a>
+            </div>
+            <div class="col-8 col-md-4 text-center">
+                @2024 Jayden Pearce
+            </div>
+            <div class="col-4 col-md-4 text-end">
+                PRIVACY POLICY
+            </div>  
+       </div> 
+    </footer>
+
+    <script>		
+        function loadRSS() {
+          //Use CORS API website as proxy
+          let proxy = 'https://cors-anywhere.herokuapp.com/';
+
+          //Declare the URL where we fetch RSS file
+          let url = "https://www.nasa.gov/rss/dyn/educationnews.rss";
+
+          //Create an XMLHttpRequest Object to request XML file (data) through HTTP protocol
+          let xhttp = new XMLHttpRequest();
+          xhttp.open("GET", proxy + url, true);
+          xhttp.send();
+
+          //Process RSS file when it has been loaded successfully		
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              //Load XML file as "XML" format and parse/process it by calling function parseRSS()
+              let rss = this.responseXML;
+              parseRSS(rss);	}
+          };
+        }
+
+        function parseRSS(rss) {
+          //Load all "items" inside the RSS document, each item is a news
+            let items = rss.getElementsByTagName("item");			
+            let rssContent = "";//varible "rssContent" is used to store rss content in HTML format
+
+            //Loop through all "items" (news) and extract child node content: "title", "link", "description" and "pubdate"
+            for (let i = 0; i< items.length; i++) {
+                let nodes = items[i].children;
+                //Extract "title", "link", "description" and "pubdate" of each "node"
+                let title, pubdate, description, link;
+                for (let j = 0; j < nodes.length; j++) {
+                if (nodes[j].tagName == "title") {
+                    title = nodes[j].childNodes[0].nodeValue;
+                } else if (nodes[j].tagName == "link") {
+                    link = nodes[j].childNodes[0].nodeValue;
+                } else if (nodes[j].tagName == "description") {
+                    description = nodes[j].childNodes[0].nodeValue;
+                } else if (nodes[j].tagName == "pubDate") {
+                    pubdate = nodes[j].childNodes[0].nodeValue;
+                }
+            }
+
+            //Format the extracted information above in HTML format and append it to the "rssContent" variable
+            //each item (news) is wrapped inside a <div>
+            rssContent += `<div class="col-12 col-md-6">
+                                <div style="background-color: lightgray; margin: 1em; height: 95%">
+                                    <h3>${title}</h3>
+                                    <p style="font-style: italic;">${pubdate}</p>
+                                    <p>${description}</p>
+                                    <p><a href="${link}">Read more</a></p>
+                                </div>	
+                            </div>`;							
+        }
+
+          //Display the "rssContent" on the webpage
+          document.getElementById("rssFeed").innerHTML = rssContent;
+        }		
+    </script>
+
+    <!--Insert Bootstrap Javascript and JQuery-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+        crossorigin="anonymous"></script>
+</body>
+</html>

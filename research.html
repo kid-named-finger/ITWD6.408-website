@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Website</title>
+
+        <!--Insert Bootstrap CSS here-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+            rel="stylesheet" 
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
+            crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <style>
+            /*Use CSS variable*/
+            :root{
+                --navbar-color:     #daf7a6;
+                --competence-color: #9cda0d;
+                --webtech-color:    #EC7063;
+                --border-color:     #f27a09;
+            }
+            /* CSS CODE */
+            p {
+                text-align: left;
+                margin-left: 1vh;
+                font-family: Helvetica, Arial, sans-serif;
+            }
+            li {
+                text-align: left;
+            }
+            ::-webkit-scrollbar {
+                background-color: whitesmoke;
+            }
+            ::-webkit-scrollbar-thumb:hover {
+                background: var(--webtech-color);
+                border-radius: 10px;
+            }
+
+            .flip-box {
+                background-color: transparent;
+                width: 400px;
+                height: 400px;
+                perspective: 1000px;
+                padding-bottom: 2vh;
+                
+            }
+
+            .flip-box-inner {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                border: 2px solid var(--border-color);
+                transition: transform 0.8s;
+                transform-style: preserve-3d;
+                
+                
+            }
+
+            .flip-box:hover .flip-box-inner {
+                transform: rotateY(180deg);
+            }
+            .flip-box-front, .flip-box-back {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+            }
+            .flip-box-front {
+                background-color: var(--webtech-color);
+                color: white;
+            }
+            .flip-box, img {
+                display:inline-block;
+            }
+            .flip-box-back {
+                background-color: antiquewhite;
+                color: black;
+                transform: rotateY(180deg);
+                overflow: auto;
+            
+            }
+        </style>
+    </head>
+
+    <body>
+       
+        <!-- Search Button -->
+        <div class="collapse" id="collapseSearchBox">
+            <form>
+                <input type="text" id="searchInput">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+
+        <!-- Navigation bar-->
+        <nav class="navbar navbar-expand-lg" style="height: 10vh; background-color: var(--navbar-color);">
+    
+
+                <!--Tagline - Insert a globe icon in front of the tagline -->  
+                <a class="navbar-brand" href="index.html"><span class="fs-2 bi bi-globe"></span>ITWD6.408</a>
+
+                <!-- Insert search icon button -->
+                <!-- Only show on small devices, hidden on big screen -->
+                <button class="btn d-inline d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSearchBox">
+                    <span class="fs-3 bi-search-heart"></span>
+                </button>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" 
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    
+                </button>
+
+                <!-- Collapse navbar -->
+                <div class="collapse navbar-collapse d-lg-flex justify-content-center" id="navbarNavAltMarkup">
+                    <div class="navbar-nav w-50 float-end" style="background-color: var(--navbar-color);">
+                        <a class="nav-link active text-end" aria-current="page" href="index.html">Home</a>
+                        <a class="nav-link text-end" href="forms.html">Forms</a>
+                        <a class="nav-link text-end" href="xml.html">XML/RSS</a>
+                        <a class="nav-link text-end" href="javascript.html">Javascript</a>
+                        <a class="nav-link text-end" href="research.html">Research</a>
+                    </div>
+                </div>
+                
+
+                <!-- Search button that only shows on big devices -->
+                <button class="btn d-none d-lg-inline" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSearchBox">
+                    <span class="fs-3 bi-search-heart"></span>
+                </button>
+            
+        </nav>
+
+        <!--Main area-->
+        <main>
+            
+                <div class="row" style="min-height: 80vh; background-color: var(--competence-color);">
+                    <div class="row justify-content-center" style="margin-top: 20px; margin-left: 0vh;">
+                        <div class="flip-box">
+                            <div class="flip-box-inner">
+                                <div class="flip-box-front">
+                                    <h2>Copyright, Creative Commons (CC) Licenses, Fair Use</h2>
+                                    <img src="Images/copyright.jpg" width="75%">
+                                </div>
+                                <div class="flip-box-back">
+                                    <h4>Copyright</h4>
+                                    <p>
+                                        Copyright certifies a person's ownership over their creative works. In New Zealand, copyright is applied when you've created something and lasts for your lifetime, plus 50 years.
+                                        When you have copyright over something, it means no one else can replicate that work, take credit for it, and then profit off it. Only the person who holds the copyright may do these things.
+                                        The copyright holder can however allow others to yse their work via a licencing agency. This allows the original artist to make money off their own work while sharing the use of the item with the public.                                    
+                                    </p>
+                                    <h4>Creative Commons</h4>
+                                    <p>
+                                        A Creative Commons license is given to owners of copyrighted material who wish to allow the public more access to their work without having to pay a fee. 
+                                        There are many licenses an author/artist can choose from, and each one codifies exactly how their material can be used.
+                                        They are recognised globally as a legal way for individuals or communities to fairly use copyrighted material for free.
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-box">
+                            <div class="flip-box-inner">
+                                <div class="flip-box-front">
+                                    <h2>Web Privacy</h2>
+                                    <img src="Images/privacy.jpg" width="75%">
+                                </div>
+                                <div class="flip-box-back">
+                                    <h4>New Zealand Privacy Policy</h4>
+                                    <p>
+                                        New Zealand addresses the way businesses can handle user's information with the <a href="https://www.privacy.org.nz/privacy-act-2020/privacy-principles/">2020 Privacy Act</a>.
+                                        The guidelines set under the privacy act are organised by 13 principles.                                        
+                                    </p>
+                                    <ol>
+                                        <li>Principle 1 states that organisations must only collect personal information if it is for a lawful purpose connected with their functions or activities, and the information is necessary for that purpose. This principle is about data minimisation.</li>
+                                        <li>Principle 2 states that personal information should be collected directly from the person it is about. The best source of information about a person is usually the person themselves. Collecting information from the person concerned means they know what is going on and have some control over their information.</li>
+                                        <li>Principle 3 means that organisations should be open about why they are collecting personal information and what they will do with it. This principle is about helping people understand the reasons you are collecting their information.</li>
+                                        <li>Principle 4 states that personal information must be collected in a way that is lawful and seen as fair and reasonable in the circumstances.</li>
+                                        <li>Principle 5 states that organisations must ensure there are safeguards in place that are reasonable in the circumstances to prevent loss, misuse or disclosure of personal information.</li>
+                                        <li>Principle 6 states that people have a right to ask for access to their own personal information.</li>
+                                        <li>Principle 7 states that a person has a right to ask an organisation or business to correct information about them if they think it is wrong.</li>
+                                        <li>Principle 8 states that an organisation must check before using or disclosing personal information that it is accurate, up to date, complete, relevant and not misleading.</li>
+                                        <li>Principle 9 states that an organisation should not keep personal information for longer than it is required for the purpose it may lawfully be used.</li>
+                                        <li>Principle 10 means that organisations can generally only use personal information for the purpose it was collected, and there are limits using personal information for different purposes.</li>
+                                        <li>Principle 11 means that an organisation may generally only disclose personal information for the purpose for which it was originally collected or obtained. Sometimes other reasons for disclosure are allowed, such as disclosure for a directly related purpose, or if the person in question gives their permission for the disclosure.</li>
+                                        <li>Principle 12 sets rules around sending personal information to organisations or people outside New Zealand.</li>
+                                        <li>Principle 13 sets restrictions on assigning identifying numbers and other unique identifiers to individuals. The principle states that an organisation can only assign unique identifiers to people when it is necessary for its functions.</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-box">
+                            <div class="flip-box-inner">
+                                <div class="flip-box-front">
+                                    <h2>Search Engine Optimisation</h2>
+                                    <img src="Images/seo.jpg" width="75%">
+                                </div>
+                                <div class="flip-box-back">
+                                    <h4>SEO</h4>
+                                    <p>SEO is used by anyone wishing to have their website appear as high in search engine results as possible.
+                                        Websites that appear at the top of your searches are highly optimised because they make their webpage's content closely related to the keywords you use in your search querys.
+                                    </p>
+                                    <h4>How to improve your discoverability</h4>
+                                    <p>
+                                        <strong>Using a desciptive URL:</strong>
+                                        Your browser uses the URLs of websites to help find more useful results. 
+                                        A search for "animals" is more likely to pull websites whose websites have words like "cat" or "dog" rather
+                                         than a jumble of characters.<br><br>
+
+                                        <strong>Reduce duplicate content:</strong>
+                                        The same image may sometimes be used by many websites (duplicate content). It's best to avoid repeating the same content other webpages use because browsers default all individual content to the same URL.
+                                        This will make other websites appear before yours.<br><br>
+
+                                        <strong>Don't use obnoxious ads:</strong>
+                                        Covering your website's visible space with ads will appear lower in searches. While most websites use ads they won't clutter their pages with them because it starts making the website unusable.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center" style="margin-left: 0vh;">
+                        <div class="flip-box">
+                            <div class="flip-box-inner">
+                                <div class="flip-box-front">
+                                    <h2>Web Publishing</h2>
+                                    <img src="Images/web-hosting.jpg" width="75%">
+                                </div>
+                                <div class="flip-box-back">
+                                    <h4>Easy ways to host your website</h4>
+                                    <p>
+                                        <strong>Google App Engine</strong> is a Google Cloud ran platform that lets you host a website.
+                                        Hosting your website here is different than usual methods because you will need to configure your website's
+                                        files since you are also allowed to create an application too. When you've finished making your website, you 
+                                        host it in any Google Cloud location in the world.<br><br>
+                                        <strong>Web-based IDEs</strong> are capable of simulating a website. Using an appropiate IDE (Glitch, JS Bin, CodePen), 
+                                        you can write your website code in the IDE and then display the website out onto a browser.<br><br>
+                                        <strong>Github Pages</strong> lets you host your website for free provided you have an email for the service.
+                                        When you log into Github, you just need to create a repo to store your website-related files and then commit the changes.
+                                        You can see your own website by typing your Github username .github.io .
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-box d-flex justify-content-center">
+                            <div class="flip-box-inner">
+                                <div class="flip-box-front">
+                                    <h2>Web Performance & Maintenance</h2>
+                                    <img src="Images/web-performance.jpg" width="75%">
+                                </div>
+                                <div class="flip-box-back">
+                                    <h4>Best website performance tests</h4>
+                                    <p>
+                                        <strong>Google's PageSpeed Insights</strong> will test your website against many metrics using a 0-100 scoring system.
+                                        Insights will test image/video rendering time, keyboard and mouse input latency, and response time to a request. 
+                                        PageSpeed Insights provides a technical lens on how to improve webpage performance. <br><br>
+                                        <strong>GTmetrix</strong> will provide you a detailed analysis of your website's performance.
+                                        It's similar to Google PageInsights however GTmetrix expands on allowing you to test your browser from a greater list of devices and browsers. <br><br>
+                                        <strong>WebPageTest</strong> shows metrics similar to PageSpeed Insights and GTmetrix, but comes as a open-source package.
+                                        One great feature of WebPageTest is that you can run concurrent tests of your website and it will show you a breakdown with all those results instead of using just one test.
+                                        However, WebPageTest is used by so many websites that it takes longer to receive your results.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-box">
+                            <div class="flip-box-inner">
+                                <div class="flip-box-front">
+                                    <h2>Web Security</h2>
+                                    <img src="Images/web-security.jpg" width="75%">
+                                </div>
+                                <div class="flip-box-back">
+                                    <h4>Basic web security practices</h4>
+                                    <p>
+                                        <or>
+                                            <li>A <strong>Secure Sockets Layer (SSL)</strong> certificate starts an encrypted 
+                                                connection between your website and the browser. It works by sharing encrypted 
+                                                data between the two parties, one of which is kept to decrypt the communication.</li>
+                                            <li><strong>Secure Hash Algorithm 256 (SHA-256)</strong> is an encryption method that 
+                                                tightly secures your password. SHA-256 is a one way function, meaning there is no 
+                                                way to reverse the encryption unless you knew the algorithm. 
+                                                This means cracking a SHA-256 password is practically impossible because the time to 
+                                                solve one password can take millions of years. This means if your website uses 
+                                                SHA-256 you can be confident that an unwanted force cannot get hold of your users passwords easily.</li>
+                                            <li><strong>Distributed Denial of Service (DDoS)</strong> attacks are becoming more common every year. 
+                                                A DDoS attack sends massive amounts of web traffic into your website in the hopes to stall and 
+                                                stop the site.
+                                                Attacks can be prevented by rate limiting your website (restricts amount of traffic over a given time),
+                                             increasing the amount of servers your website uses, and implementing live monitoring. 
+                                                A service like Cloudfare will help you prevent an attack by always tracking your network and respond
+                                                 to a possible attack before damage can be done to your site.</li>
+                                        </or>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </main>
+
+            <!--Footer area-->
+            <footer style="min-height: 10vh; background-color: var(--navbar-color);">     
+                <div class="row">
+                    <!-- Insert social media icons -->
+                    <div class="col-12 col-md-4"> 
+                        <a href="https://www.facebook.com/" style="color: blue;"><span class="fs-1 bi bi-facebook"></span></a>
+                        <a href="https://www.linkedin.com/"><span class="fs-1 bi bi-linkedin"></span></a>
+                        <a href="https://www.instagram.com/" style="color: greenyellow;"><span class="fs-1 bi bi-instagram"></span></a>
+                    </div>
+                    <div class="col-8 col-md-4 text-center">
+                        @2024 Jayden Pearce
+                    </div>
+                    <div class="col-4 col-md-4 text-end">
+                        PRIVACY POLICY
+                    </div>  
+                </div> 
+            </footer>
+
+            <!--Insert Bootstrap Javascript and JQuery-->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+                crossorigin="anonymous"></script>
+        
+    </body>
+</html>

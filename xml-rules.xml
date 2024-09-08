@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="data-styles.css"?>
+<xml-rules>
+    <title>Six XML Rules</title>
+    <rule>
+        <heading>Rule 1: XML documents must have Root Element</heading>
+        <description>XML documents must contain one root element that is the parent of all other elements:</description>
+        <example></example>
+    </rule>
+    <rule>
+        <heading>Rule 2: The XML Prolog</heading>
+        <description>The XML prolog is optional. If it exists, it must come first in the document.</description>
+        <example>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</example>
+    </rule>
+    <rule>
+        <heading>Rule 3: All XML elements must have a closing tag</heading>
+        <description>In XML is it illegal to omit the closing tag. All elements must have a closing tag.</description>
+        <example>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</example>
+    </rule>
+    <rule>
+        <heading>Rule 4: Lorem Ipsum</heading>
+        <description>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</description>
+        <example>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</example>
+    </rule>
+    <rule>
+        <heading>Rule 5: Lorem Ipsum</heading>
+        <description>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</description>
+        <example>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</example>
+    </rule>
+    <rule>
+        <heading>Rule 6: Lorem Ipsum</heading>
+        <description>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</description>
+        <example>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</example>
+    </rule>
+</xml-rules>
